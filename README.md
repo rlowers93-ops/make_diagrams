@@ -2,24 +2,38 @@
 
 ```mermaid
 flowchart LR
-  Raw[Raw data] --> Bronze[Bronze]
+
+  Raw[Source data] --> Bronze[Bronze]
     Bronze --> Check{Quality check}
     Check -->|Pass| Silver[Silver]
     Check -->|Fail| Quarantine[Quarantine]
     Silver --> Gold[Gold]
 
+  subgraph Raw["Source data"]
+        csvCirculation[csv]
+        jsonEvents[json]
+        txtFeedback[txt]
+        xlsxCatalogue[xlsx]
+    end
+
     subgraph Bronze["Bronze layer"]
-        RawSales[Raw sales]
-        RawProducts[Raw products]
+        RawCirculation[Raw circulation]
+        RawEvents[Raw events]
+        RawFeedback[Raw feedback]
+        RawCatalogue[Raw catalogue]
     end
 
     subgraph Silver["Silver layer"]
-        CleanSales[Clean sales]
-        CleanProducts[Clean products]
+        CleanCirculation[Clean circulation]
+        CleanEvents[Clean events]
+        CleanFeedback[Clean feedback]
+        CleanCatalogue[Clean catalogue]
     end
 
-    RawSales --> CleanSales
-    RawProducts --> CleanProducts
+    RawCirculation --> CleanCirculation
+    RawEvents --> CleanEvents
+    RawFeedback --> CleanFeedback
+    RawCatalogue --> CleanCatalogue
 ```
 
 ```mermaid
